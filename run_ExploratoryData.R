@@ -10,7 +10,7 @@ render <- function(n, w=480, h=480){
     # Render 2^n: 2,4,8,16,64,128,256,512,..
     # It's a good practice when it's web or mobile display
     # but in this case takes 480px ¯\_(ツ)_/¯
-    dev.copy(png,paste0("plot",n,".png"), width=w, height=h) 
+    dev.copy(png,paste0("plot",n,".png"), width=w, height=h, bg = "transparent") 
     dev.off() 
 }
 
@@ -94,8 +94,9 @@ manageDir(mainDir, "figure")
 #   Reset par to the default values at startup
 #   more details here:
 #   https://stackoverflow.com/questions/5789982/reset-par-to-the-default-values-at-startup
+#   https://stackoverflow.com/questions/44336215/error-in-dev-off-cannot-shut-down-device-1-the-null-device
 #---------------------------------------------
-dev.off() 
+while (!is.null(dev.list())) dev.off() 
 
 
 
